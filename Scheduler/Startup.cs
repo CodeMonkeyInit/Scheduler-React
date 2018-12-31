@@ -1,10 +1,14 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using React.Managers;
+using React.Model;
 
 namespace React
 {
@@ -24,6 +28,12 @@ namespace React
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/build"; });
+            services.AddDbContext<SchedulerDbContext>(options => options
+                .UseSqlite(Configuration.GetConnectionString(nameof(SchedulerDbContext))));
+
+            services.AddAutoMapper();
+
+            services.AddScoped<ObjectiveManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
