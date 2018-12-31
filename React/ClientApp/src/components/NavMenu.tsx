@@ -1,10 +1,10 @@
 import React from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import {Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
+import {Link} from 'react-router-dom';
 import './NavMenu.css';
 
-export default class NavMenu extends React.Component {
-  constructor (props) {
+export default class NavMenu extends React.Component<any, any> {
+    constructor(props: any) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
