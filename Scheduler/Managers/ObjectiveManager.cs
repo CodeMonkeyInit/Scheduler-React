@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using React.Model;
 
@@ -22,7 +20,10 @@ namespace React.Managers
         }
 
         public async Task<List<Objective>> GetAllAsync() =>
-            await _dbContext.Objectives.Where(objective => !objective.Completed).ToListAsync();
+            await _dbContext.Objectives
+                .Where(objective => !objective.Completed)
+                .OrderByDescending(objective => objective.Id)
+                .ToListAsync();
 
         public async Task<Objective> GetAsync(int id) =>
             await _dbContext.Objectives.FindAsync(id);
@@ -36,22 +37,26 @@ namespace React.Managers
             return newObjective;
         }
 
-        public async Task Update(Objective updatedObjective)
+        public async Task<Objective> Update(Objective updatedObjective)
         {
             var updatingObjective = await GetObjectiveAsync(updatedObjective.Id);
 
             _mapper.Map(updatedObjective, updatingObjective);
 
             await _dbContext.SaveChangesAsync();
+
+            return updatingObjective;
         }
 
-        public async Task CompleteObjectiveAsync(int id)
+        public async Task<int> CompleteObjectiveAsync(Objective completingObjective)
         {
-            var objective = await GetObjectiveAsync(id);
+            var objective = await GetObjectiveAsync(completingObjective.Id);
 
             objective.Completed = true;
 
             await _dbContext.SaveChangesAsync();
+
+            return objective.Id;
         }
         
         private async Task<Objective> GetObjectiveAsync(int id)

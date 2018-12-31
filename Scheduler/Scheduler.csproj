@@ -20,6 +20,9 @@
     <Content Remove="$(SpaRoot)**" />
     <Content Include="ClientApp\src\App.css" />
     <Content Include="ClientApp\src\classes\objective.ts" />
+    <Content Include="ClientApp\src\components\Layout.css" />
+    <Content Include="ClientApp\src\components\ObjectiveModal.tsx" />
+    <Content Include="ClientApp\src\components\Objectives.css" />
     <Content Include="ClientApp\src\components\Objectives.tsx" />
     <Content Include="ClientApp\src\store\Objectives.ts" />
     <None Remove="$(SpaRoot)**" />

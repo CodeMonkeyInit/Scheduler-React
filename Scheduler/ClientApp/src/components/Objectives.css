@@ -1,0 +1,19 @@
+.card{
+    display: inline-flex;
+    margin: 5px;
+    min-width: 15%;
+}
+
+.objectives-container{
+    justify-content: center;
+}
+
+.add-icon{
+    position: absolute!important;
+
+    bottom: 20px;
+    right: 20px;
+}
+.no-objectives{
+    padding: 20px
+}

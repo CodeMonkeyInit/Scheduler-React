@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using React.Managers;
@@ -32,12 +30,12 @@ namespace React.Controllers
             await _objectiveManager.AddAsync(newObjective);
 
         [HttpPut]
-        public async Task UpdateAsync(Objective objective) =>
+        public async Task<Objective> UpdateAsync(Objective objective) =>
             await _objectiveManager.Update(objective);
 
         [HttpDelete]
-        public async Task RemoveAsync(int id) =>
-            await _objectiveManager.CompleteObjectiveAsync(id);
+        public async Task<int> RemoveAsync(Objective removingObjective) =>
+            await _objectiveManager.CompleteObjectiveAsync(removingObjective);
 
     }
 }
