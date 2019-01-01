@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import {ObjectiveModal} from "./ObjectiveModal";
 import AddIcon from "@material-ui/icons/Add";
 import Paper from "@material-ui/core/Paper";
+import Tooltip from '@material-ui/core/Tooltip';
 
 interface ObjectiveProperties {
     getAll(): void;
@@ -75,7 +76,9 @@ class Objectives extends Component<ObjectiveProperties, any> {
             return this.props.objectives.map(objective =>
                 <Card key={objective.id} className={'card'}>
                     <CardContent>
-                        {objective.description}
+                        <Tooltip title={objective.description}>
+                            <Typography className='description'>{objective.description}</Typography>
+                        </Tooltip>
                     </CardContent>
                     <CardActions>
                         <Button color={"primary"} onClick={() => this.openEditModal(objective)}>

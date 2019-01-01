@@ -2,6 +2,7 @@
     display: inline-flex;
     margin: 5px;
     min-width: 15%;
+    max-width: 100%;
 }
 
 .objectives-container{
@@ -16,4 +17,9 @@
 }
 .no-objectives{
     padding: 20px
+}
+.description{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
